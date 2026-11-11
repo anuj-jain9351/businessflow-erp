@@ -7,6 +7,9 @@ import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import connectDB from './config/db.js';
 import clientRoutes from './routes/clientRoutes.js';
+import projectRoutes from './routes/projectRoutes.js';
+import taskRoutes from './routes/taskRoutes.js';
+
 // Load environment variables
 dotenv.config();
 
@@ -26,6 +29,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/api/auth', authRoutes);
 app.use('/api/clients', clientRoutes);
+app.use('/api/projects', projectRoutes);
+app.use('/api/tasks', taskRoutes);
 
 // Rate limiting to prevent brute-force attacks
 const limiter = rateLimit({
@@ -51,9 +56,7 @@ app.listen(PORT, () => {
 
 
 
-// @desc    Get single client by ID
-// @route   GET /api/clients/:id
-// @access  Private
+
 export const getClientById = async (req, res) => {
   try {
     const client = await Client.findOne({
@@ -72,9 +75,6 @@ export const getClientById = async (req, res) => {
   }
 };
 
-// @desc    Update client details
-// @route   PUT /api/clients/:id
-// @access  Private (Company Owner, Admin, Project Manager)
 export const updateClient = async (req, res) => {
   try {
     let client = await Client.findOne({
@@ -103,9 +103,6 @@ export const updateClient = async (req, res) => {
   }
 };
 
-// @desc    Delete client
-// @route   DELETE /api/clients/:id
-// @access  Private (Company Owner, Admin)
 export const deleteClient = async (req, res) => {
   try {
     const client = await Client.findOne({
@@ -129,9 +126,11 @@ export const deleteClient = async (req, res) => {
   }
 };
 
+
+
 // {
 //   "success": true,
-//   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZTVlODEzYjE2NzY4NzBmNjk2NzhkMSIsImlhdCI6MTc5MzUzODkyNCwiZXhwIjoxNzk0MTQzNzI0fQ.4_4nSphARj2ES0YSehT4h4YA6C6ukpJt9tkA7jeNbs8",
+//   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZTVlODEzYjE2NzY4NzBmNjk2NzhkMSIsImlhdCI6MTc5NDM5MjcwMiwiZXhwIjoxNzk0OTk3NTAyfQ.q3zxpdR-wpfmJrs1PAN-NSoZN0zDvzT0XmwlzSIEZPA",
 //   "user": {
 //     "id": "6ae5e813b1676870f69678d1",
 //     "name": "Anuj Jain",
@@ -147,4 +146,3 @@ export const deleteClient = async (req, res) => {
 //     }
 //   ]
 // }
-

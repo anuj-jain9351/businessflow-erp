@@ -12,7 +12,7 @@ export const createClient = async (req, res) => {
     }
 
     const client = await Client.create({
-      companyId: req.companyId, // Attached automatically by authorizeCompany middleware!
+      companyId: req.companyId, // Attached automatically by authorizeCompany middleware
       name,
       email,
       phone,
@@ -37,7 +37,6 @@ export const createClient = async (req, res) => {
 // @access  Private (All active workspace members)
 export const getClients = async (req, res) => {
   try {
-    // 🔒 STRICT MULTI-TENANCY FILTER: Only fetch clients matching current tenant companyId
     const clients = await Client.find({ companyId: req.companyId })
       .populate('createdBy', 'name email')
       .sort({ createdAt: -1 });
@@ -50,5 +49,83 @@ export const getClients = async (req, res) => {
   } catch (error) {
     console.error('Get Clients Error:', error);
     res.status(500).json({ success: false, message: 'Server error while fetching clients', error: error.message });
+  }
+};
+
+// @desc    Get single client by ID
+// @route   GET /api/clients/:id
+// @access  Private
+export const getClientById = async (req, res) => {
+  try {
+    const client = await Client.findOne({
+      _id: req.params.id,
+      companyId: req.companyId,
+    }).populate('createdBy', 'name email');
+
+    if (!client) {
+      return res.status(404).json({ success: false, message: 'Client not found' });
+    }
+
+    res.status(200).json({ success: true, client });
+  } catch (error) {
+    console.error('Get Client Error:', error);
+    res.status(500).json({ success: false, message: 'Server error while fetching client details' });
+  }
+};
+
+// @desc    Update client details
+// @route   PUT /api/clients/:id
+// @access  Private (Company Owner, Admin, Project Manager)
+export const updateClient = async (req, res) => {
+  try {
+    let client = await Client.findOne({
+      _id: req.params.id,
+      companyId: req.companyId,
+    });
+
+    if (!client) {
+      return res.status(404).json({ success: false, message: 'Client not found' });
+    }
+
+    client = await Client.findByIdAndUpdate(
+      req.params.id,
+      { $set: req.body },
+      { new: true, runValidators: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      message: 'Client updated successfully',
+      client,
+    });
+  } catch (error) {
+    console.error('Update Client Error:', error);
+    res.status(500).json({ success: false, message: 'Server error while updating client' });
+  }
+};
+
+// @desc    Delete client
+// @route   DELETE /api/clients/:id
+// @access  Private (Company Owner, Admin)
+export const deleteClient = async (req, res) => {
+  try {
+    const client = await Client.findOne({
+      _id: req.params.id,
+      companyId: req.companyId,
+    });
+
+    if (!client) {
+      return res.status(404).json({ success: false, message: 'Client not found' });
+    }
+
+    await client.deleteOne();
+
+    res.status(200).json({
+      success: true,
+      message: 'Client removed successfully',
+    });
+  } catch (error) {
+    console.error('Delete Client Error:', error);
+    res.status(500).json({ success: false, message: 'Server error while deleting client' });
   }
 };
