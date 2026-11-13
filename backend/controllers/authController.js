@@ -64,10 +64,11 @@ export const registerUser = async (req, res) => {
     // Generate Token
     const token = generateToken(user._id);
 
-    // Send response with cookie and json
+    // 🟢 FIXED: Send correct companyId at the root level so frontend can grab it instantly
     res.status(201).json({
       success: true,
       token,
+      companyId: company._id, // <--- Yahan pehle user.companyId tha jo undefined tha
       user: {
         id: user._id,
         name: user.name,
@@ -115,9 +116,13 @@ export const loginUser = async (req, res) => {
 
     const token = generateToken(user._id);
 
+    // 🟢 FIXED: Automatically extract the first active company's ID as top-level companyId
+    const defaultCompanyId = memberships.length > 0 ? memberships[0].companyId._id : null;
+
     res.status(200).json({
       success: true,
       token,
+      companyId: defaultCompanyId, // <--- Yahan root level par companyId add kar diya hai
       user: {
         id: user._id,
         name: user.name,

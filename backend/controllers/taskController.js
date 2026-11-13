@@ -124,4 +124,4 @@ export const deleteTask = async (req, res) => {
     console.error('Delete Task Error:', error);
     res.status(500).json({ success: false, message: 'Server error while deleting task' });
   }
-};
+};   
