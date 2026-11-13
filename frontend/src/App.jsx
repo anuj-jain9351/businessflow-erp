@@ -6,6 +6,8 @@ import Dashboard from './pages/Dashboard';
 import Clients from './pages/Clients';
 import Projects from './pages/Projects';
 import Tasks from './pages/Tasks';
+import Invoices from './pages/Invoices';
+import Settings from './pages/Settings';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/clients" element={<Clients />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/tasks" element={<Tasks />} />
+        <Route path="/invoices" element={<Invoices />} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>

@@ -11,7 +11,7 @@ router.post('/login', loginUser);
 router.get('/me', protect, (req, res) => {
   res.status(200).json({
     success: true,
-    user: req.user,
+    user: req.user, 
   });
 });
 

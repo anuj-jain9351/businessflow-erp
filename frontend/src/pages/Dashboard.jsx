@@ -67,7 +67,7 @@ export default function Dashboard() {
 
           {/* Navigation Links */}
           <nav className="space-y-2">
-            <a href="#" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-cyan-500/10 text-cyan-400 font-medium border border-cyan-500/20">
+            <a href="/dashboard" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-cyan-500/10 text-cyan-400 font-medium border border-cyan-500/20">
               <LayoutDashboard size={20} /> Dashboard
             </a>
             <a href="/clients" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition">
@@ -79,10 +79,10 @@ export default function Dashboard() {
             <a href="/tasks" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition">
               <CheckSquare size={20} /> Tasks
             </a>
-            <a href="#" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition">
+            <a href="/invoices" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition">
               <FileText size={20} /> Invoices
             </a>
-            <a href="#" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition">
+            <a href="/settings" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-200 transition">
               <Settings size={20} /> Settings
             </a>
           </nav>
