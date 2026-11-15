@@ -143,7 +143,7 @@ export default function Tasks() {
                 <div className="space-y-3 text-sm border-t border-slate-800 pt-4">
                   <div className="flex justify-between items-center text-slate-300">
                     <span className="text-slate-500 text-xs flex items-center gap-1"><FolderKanban size={14} /> Project</span>
-                    <span className="font-medium text-cyan-400 truncate max-w-[160px]">{task.projectId?.name || 'General'}</span>
+                    <span className="font-medium text-cyan-400 truncate ">{task.projectId?.name || 'General'}</span>
                   </div>
                   <div className="flex justify-between items-center text-slate-300">
                     <span className="text-slate-500 text-xs">Priority</span>

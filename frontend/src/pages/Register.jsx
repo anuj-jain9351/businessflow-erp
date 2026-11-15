@@ -37,9 +37,8 @@ localStorage.setItem('token', token);
 if (companyId) {
   localStorage.setItem('companyId', companyId);
 }
-      alert('Company & Account Registered Successfully! 🎉');
       navigate("/login")
-      // Aage hum ise dashboard par bhejenge
+ 
     } catch (err) {
       console.error('Registration Error:', err);
       setError(err.response?.data?.message || 'Registration failed. Try again.');

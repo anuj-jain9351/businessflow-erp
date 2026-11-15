@@ -15,7 +15,8 @@ export default function Login() {
     setLoading(true);
 
     try {
-      // Backend auth login route (apne backend route ke mutabiq adjust kar sakte hain)
+      // Backend auth login route 
+      
       const response = await API.post('/auth/login', { email, password });
       
 const token = response.data.token;
@@ -30,9 +31,8 @@ if (companyId) {
   localStorage.setItem('companyId', companyId);
 }
 
-      alert('Login Successful! 🎉');
       navigate('/dashboard');
-      // Aage hum ise dashboard par redirect karenge
+     
     } catch (err) {
       console.error('Login Error:', err);
       setError(err.response?.data?.message || 'Invalid email or password');
@@ -70,7 +70,7 @@ if (companyId) {
             <label className="block text-gray-700 text-sm font-semibold mb-2">Password</label>
             <input 
               type="password" 
-              className="w-4/4 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className=" w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
