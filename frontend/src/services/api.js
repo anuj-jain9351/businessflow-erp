@@ -1,24 +1,15 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: 'https://businessflow-erp.onrender.com/api', // <-- Yeh Render wala live backend URL hona chahiye
 });
 
-// Request Interceptor: Automatic Token aur Company ID attach karne ke liye
-API.interceptors.request.use((config) => {
+API.interceptors.request.use((req) => {
   const token = localStorage.getItem('token');
   const companyId = localStorage.getItem('companyId');
-
-  if (token && token !== 'undefined') {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  if (companyId && companyId !== 'undefined' && companyId !== 'null') {
-    config.headers['x-company-id'] = companyId;
-  }
-  
-  return config;
-}, (error) => {
-  return Promise.reject(error);
+  if (token) req.headers.Authorization = `Bearer ${token}`;
+  if (companyId) req.headers['x-company-id'] = companyId;
+  return req;
 });
 
 export default API;
