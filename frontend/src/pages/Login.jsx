@@ -85,6 +85,20 @@ if (companyId) {
           >
             {loading ? 'Signing in...' : 'Sign In'}
           </button>
+
+
+<div className="text-center mt-6">
+  <p className="text-sm text-slate-400">
+    Don't have a workspace account?{' '}
+    <button
+      type="button"
+      onClick={() => navigate('/register')}
+      className="text-cyan-400 font-medium hover:underline focus:outline-none"
+    >
+      Register here
+    </button>
+  </p>
+</div>
         </form>
       </div>
     </div>
