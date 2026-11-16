@@ -23,8 +23,20 @@ const app = express();
 
 // Security and utility Middlewares
 app.use(helmet());
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://businessflow-erp-zeta.vercel.app'
+];
+
 app.use(cors({
-  origin: 'http://localhost:5173', // Vite frontend URL
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like Thunder Client / mobile apps) or allowed URLs
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 

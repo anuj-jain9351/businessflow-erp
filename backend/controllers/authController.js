@@ -92,7 +92,7 @@ export const registerUser = async (req, res) => {
 // @route   POST /api/auth/login
 // @access  Public
 export const loginUser = async (req, res) => {
-  try {
+  try { 
     const { email, password } = req.body;
 
     if (!email || !password) {
