@@ -23,22 +23,31 @@ const app = express();
 
 // Security and utility Middlewares
 app.use(helmet());
+import cors from 'cors';
+
+// Allowed origins list
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://businessflow-erp-zeta.vercel.app'
+  'https://businessflow-erp-zeta.vercel.app',
+  'https://businessflow-3180ok1ch-anujchandaliya935129-7174s-projects.vercel.app' // Aapka current preview URL bhi add kar diya hai
 ];
 
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (like Thunder Client / mobile apps) or allowed URLs
-    if (!origin || allowedOrigins.includes(origin)) {
+    // Allow requests with no origin (like mobile apps or curl) or allowed URLs
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-company-id']
 }));
+
+// OPTIONS preflight requests ke liye explicit handling
+app.options('*', cors());
 
 app.use(express.json());
 app.use(cookieParser());
