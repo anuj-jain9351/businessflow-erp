@@ -88,7 +88,7 @@ if (companyId) {
 
 
 <div className="text-center mt-6">
-  <p className="text-sm text-slate-400">
+  <p className="text-sm text-slate-400"> 
     Don't have a workspace account?{' '}
     <button
       type="button"

@@ -10,7 +10,7 @@ import Invoices from './pages/Invoices';
 import Settings from './pages/Settings';
 
 function App() {
-  return (
+  return ( 
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />

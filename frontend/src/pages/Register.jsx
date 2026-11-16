@@ -119,7 +119,7 @@ if (companyId) {
           >
             {loading ? 'Creating Account...' : 'Register Workspace'}
           </button>
-        </form>
+        </form> 
 
         <p className="text-center text-sm text-gray-600">
           Already have an account?{' '}
