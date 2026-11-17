@@ -23,7 +23,7 @@ const app = express();
 
 // Security and utility Middlewares
 app.use(helmet());
-import cors from 'cors';
+
 
 // Allowed origins list
 const allowedOrigins = [
