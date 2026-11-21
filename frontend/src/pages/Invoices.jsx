@@ -99,7 +99,7 @@ export default function Invoices() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 p-8 font-sans">
       {/* Header */}
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8">
         <div className="flex items-center gap-4">
           <button
             onClick={() => navigate('/dashboard')}
@@ -109,7 +109,7 @@ export default function Invoices() {
           </button>
           <div>
             <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-              <FileText className="text-cyan-400" /> Invoice Management
+              <FileText className="text-cyan-400 " /> Invoice Management
             </h1>
             <p className="text-sm text-slate-400">Track billings, payments, and client invoices</p>
           </div>

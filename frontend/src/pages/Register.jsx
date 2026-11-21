@@ -33,7 +33,11 @@ const companyId =
   response.data.user?.companyId || 
   response.data.companies?.[0]?._id;
 
+  const user = response.data.user;
 localStorage.setItem('token', token);
+if (user) {
+  localStorage.setItem('user', JSON.stringify(user));
+}
 if (companyId) {
   localStorage.setItem('companyId', companyId);
 }

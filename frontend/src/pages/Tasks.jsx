@@ -76,7 +76,7 @@ export default function Tasks() {
     <div className="min-h-screen bg-slate-950 text-slate-100 p-8 font-sans">
       
       {/* Top Header */}
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 sm:mb-8">
         <div className="flex items-center gap-4">
           <button 
             onClick={() => navigate('/dashboard')}
